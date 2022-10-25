@@ -11,22 +11,31 @@ import './App.css';
 
 // export default App;
 import { useState } from "react";
+import TextInput from './Components/TextInputs';
 
 function App() {
-  const [name, setName] = useState("");
-  const [nam, setNam] = useState("");
 
-
+  const [studentDetails,setStudentDetails]= useState({
+    firstName:"",
+    lastName:"",
+    age:""
+  });
+  const changeStudentDetails= (e)=>{
+    setStudentDetails({...studentDetails,[e.target.name]:e.target.value});
+  }
+  
   return (
-    <div>
-      <form>
-        <div><input type="text" value={name} onChange={(e) => setName (e.target.value)}placeholder="Your FName"
-        /></div>
-        <div><input type="text" value={nam} onChange={(e) => setNam (e.target.value)}placeholder="Your LName"
-        /></div>
-        <p>Firstname:{name}</p>
-        <p>Lastname:{nam}</p>
-      </form>
+   
+     
+        <div>
+<TextInput handleChange={changeStudentDetails} name="firstName" placeholder="your fName"/>
+<TextInput handleChange={changeStudentDetails} name="lastName" placeholder="your fName"/>
+<TextInput handleChange={changeStudentDetails} name="age" placeholder="your fName"/>
+        <div>
+        <p>Firstname:{studentDetails.firstName}</p>
+        <p>Lastname:{studentDetails.lastName}</p>
+        <p>Age:{studentDetails.age}</p>
+      </div>
     </div>
   );
 }
